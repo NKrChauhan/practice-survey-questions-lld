@@ -6,10 +6,10 @@ class AdminUser(BaseUser):
     user_type = UserType.ADMIN
 
     def has_permission_to_publish_question_paper(self):
-        raise True
+        return True
 
     def has_permission_to_check_evaluation(self):
-        raise True
+        return True
 
     def has_permission_to_submit_survey(self):
-        raise False
+        return False

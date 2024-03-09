@@ -1,5 +1,9 @@
+from user.base import BaseUser
+
+
 class SurveyQuestion:
-    def __init__(self, question_name: str):
+    def __init__(self, user: BaseUser, question_name: str):
+        self.user = user
         self.question_name = question_name
         self.avg_score = 0
         self.number_of_submissions = 0
@@ -19,3 +23,8 @@ class SurveyQuestion:
             if option.option_name == answer:
                 return option.score
         return 0
+
+    def get_avg_score(self):
+        if self.user.has_permission_to_check_evaluation():
+            return self.avg_score
+        raise Exception("Permission not granted to see avg score")
